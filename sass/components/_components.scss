@@ -261,15 +261,15 @@
             display: block !important;
           }
 
-          #date {
+          .date {
             font-size: 1.5rem;
           }
 
-          #position {
+          .position {
             font-size: 1.7rem;
           }
 
-          #company {
+          .company {
             font-size: 1.5rem;
             text-transform: uppercase;
           }
@@ -491,6 +491,9 @@
     text-align: center;
     color: $color-light-grey;
     padding: 1rem 0;
+    text-transform: none;
+    letter-spacing: initial;
+    display: block;
 
     & span {
       font-size: 2.2rem;

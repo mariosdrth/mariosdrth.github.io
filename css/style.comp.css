@@ -664,11 +664,11 @@ a:active {
         @media only screen and (max-width: 37.5em) {
           .experience-content__details__list--item--alt {
             display: block !important; } }
-        .experience-content__details__list--item--alt #date {
+        .experience-content__details__list--item--alt .date {
           font-size: 1.5rem; }
-        .experience-content__details__list--item--alt #position {
+        .experience-content__details__list--item--alt .position {
           font-size: 1.7rem; }
-        .experience-content__details__list--item--alt #company {
+        .experience-content__details__list--item--alt .company {
           font-size: 1.5rem;
           text-transform: uppercase; }
         .experience-content__details__list--item--alt :not(:last-child) {
@@ -808,7 +808,10 @@ a:active {
   font-size: 2rem;
   text-align: center;
   color: #e9e7e7;
-  padding: 1rem 0; }
+  padding: 1rem 0;
+  text-transform: none;
+  letter-spacing: initial;
+  display: block; }
   .contact-content__header--text span {
     font-size: 2.2rem;
     color: #39d3eb; }
