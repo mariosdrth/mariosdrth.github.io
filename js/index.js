@@ -28,8 +28,8 @@ $('document').ready(() => {
 
   $('.logo-gen').click(() => window.open('https://www.genedata.com/', '_blank'));
   $('.logo-alten').click(() => window.open('https://www.alten.fr/', '_blank'));
-  $('.logo-amadeus').click(() => window.open('https://amadeus.com/en', '_blank'));
-  $('.logo-ots').click(() => window.open('https://ots.gr/', '_blank'));
+  $('.logo-amadeus').click(() => window.open('https://www.amadeus.com/en', '_blank'));
+  $('.logo-ots').click(() => window.open('https://www.ots.gr/', '_blank'));
 
   $('.alert').click(() => removeAlertOnBackdropClick());
   $('.alert__content').click(event => event.stopPropagation());
@@ -56,11 +56,11 @@ const removeAlertOnBackdropClick = () => {
 };
 
 const toggleClassesToAlert = (success, msg) => {
-	$('.alert__content--header').removeClass('error');
-    $('.alert__content--message').removeClass('error-msg');
-	$('.alert__content--header').removeClass('success');
-    $('.alert__content--message').removeClass('success-msg');
-	
+  $('.alert__content--header').removeClass('error');
+  $('.alert__content--message').removeClass('error-msg');
+  $('.alert__content--header').removeClass('success');
+  $('.alert__content--message').removeClass('success-msg');
+
   if (success) {
     $('.alert__content--header').html('Success!');
     $('.alert__content--header').addClass('success');
