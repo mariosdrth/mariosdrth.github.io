@@ -56,6 +56,11 @@ const removeAlertOnBackdropClick = () => {
 };
 
 const toggleClassesToAlert = (success, msg) => {
+	$('.alert__content--header').removeClass('error');
+    $('.alert__content--message').removeClass('error-msg');
+	$('.alert__content--header').removeClass('success');
+    $('.alert__content--message').removeClass('success-msg');
+	
   if (success) {
     $('.alert__content--header').html('Success!');
     $('.alert__content--header').addClass('success');
