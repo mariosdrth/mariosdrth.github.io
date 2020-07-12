@@ -154,7 +154,7 @@ const getDocHeight = () => {
 
 const submitForm = event => {
   event.preventDefault();
-  const url = 'http://samplesite.ddns.net:8089/send-email';
+  const url = 'https://samplesite.ddns.net:8089/send-email';
   const form = $('.contact-content__form').serializeArray();
   [userName, userEmail, message] = form;
   const objToSend = {
