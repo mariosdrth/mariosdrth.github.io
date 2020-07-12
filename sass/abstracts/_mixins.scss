@@ -1,0 +1,85 @@
+@mixin boxShadow($hOffset: 0, $vOffset: 1.5, $blur: 4, $percentage: 0.15) {
+  box-shadow: ($hOffset * 1rem) ($vOffset * 1rem) ($blur * 1rem) rgba(0, 0, 0, $percentage);
+}
+
+@mixin centerHorVer($top: 50, $left: 50) {
+  position: absolute;
+  top: $top * 1%;
+  left: $left * 1%;
+  transform: translate(-50%, -50%);
+}
+
+// MEDIA QUERY MANAGER
+// 1em = 16px
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == small-phone {
+    // 400px
+    @media only screen and (max-width: 25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == phone {
+    // 600px
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == phone-tab {
+    // 800px
+    @media only screen and (max-width: 50em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-port {
+    // 900px
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tab-land {
+    // 1200px
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == tiny-desktop {
+    // 1300px
+    @media only screen and (max-width: 81.25em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == small-desktop {
+    // 1500px
+    @media only screen and (max-width: 93.75em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == norm-desktop {
+    // 1800px
+    @media only screen and (max-width: 112.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == big-desktop {
+    // 1800px
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == huge-desktop {
+    // 2200px
+    @media only screen and (min-width: 137.5em) {
+      @content;
+    }
+  }
+}
