@@ -1,6 +1,6 @@
 # My Site
 
-Personal PAge
+Personal Page
 
 ## Run
 
