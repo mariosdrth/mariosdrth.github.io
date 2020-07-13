@@ -8,11 +8,15 @@ $('document').ready(() => {
   adaptActiveClassOnNav();
   toggleDisplayToTopElement();
 
+  animateElement('.home-content--text--name', 'char');
+  animateElement('#main-role', 'char-role');
+
   $(window).scroll(adaptNav);
   $(window).scroll(adaptActiveClassOnNav);
   $(window).scroll(toggleDisplayToTopElement);
   $(window).scroll(showSummary);
   $(window).scroll(showExperience);
+  $(window).scroll(showContactForm);
 
   $('#home-nav').click(() => adaptActiveClassOnNav);
   $('#about-nav').click(() => adaptActiveClassOnNav);
@@ -76,8 +80,8 @@ const toggleClassesToAlert = (success, msg) => {
 
 const showSummary = () => {
   const scroll = $(window).scrollTop();
-  if (scroll > homeBreakpoint || scroll + $(window).height() > getDocHeight() - 20) {
-    $('.about-content__summary').addClass('show');
+  if (scroll > homeBreakpoint - 200 || scroll + $(window).height() > getDocHeight() - 20) {
+    $('.about-content__summary').addClass('show-summary');
   }
 };
 
@@ -85,6 +89,13 @@ const showExperience = () => {
   const scroll = $(window).scrollTop();
   if (scroll > aboutBreakpoint - 400 || scroll + $(window).height() > getDocHeight() - 20) {
     $('.experience-content__details').addClass('show');
+  }
+};
+
+const showContactForm = () => {
+  const scroll = $(window).scrollTop();
+  if (scroll > experienceBreakpoint - 400 || scroll + $(window).height() > getDocHeight() - 20) {
+    $('.contact-content__form').addClass('show-contact-form');
   }
 };
 
@@ -184,4 +195,16 @@ const submitForm = event => {
       toggleClassesToAlert(false, err.message);
       toggleAlert();
     });
+};
+
+const animateElement = (elementIdentifier, spanClass) => {
+  const contentName = $(elementIdentifier);
+  const contentNameInnerText = contentName.text().trim();
+  let newDom = '';
+
+  contentNameInnerText.split('').forEach(letter => {
+    newDom += '<span class="' + spanClass + '">' + (letter == ' ' ? '&nbsp;' : letter) + '</span>';
+  });
+
+  contentName.html(newDom);
 };

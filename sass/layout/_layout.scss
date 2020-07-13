@@ -127,6 +127,7 @@
 }
 
 .contact {
+  min-height: 35vh;
   padding: 5rem 0;
   background-image: linear-gradient(to bottom, rgba($color-black, 0.4), rgba($color-black, 0.2)), url('../img/back-contact-small.jpg');
   background-size: cover;

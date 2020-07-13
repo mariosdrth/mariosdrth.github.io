@@ -1,3 +1,13 @@
+.char {
+  animation: drop-main-title 1s ease-out 1 both;
+  display: inline-block;
+}
+
+.char-role {
+  animation: drop-main-role 1s ease-out 1 both;
+  display: inline-block;
+}
+
 .backdrop {
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
@@ -24,6 +34,16 @@
 
 .show {
   opacity: 1 !important;
+}
+
+.show-summary {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.show-contact-form {
+  opacity: 1 !important;
+  transform: scale(1) !important;
 }
 
 .visible {
