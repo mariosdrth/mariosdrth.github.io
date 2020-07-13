@@ -49,7 +49,7 @@
 
     &--role {
       font-size: 7rem;
-      font-weight: 500;
+      font-weight: 600;
       letter-spacing: 1.4rem;
       margin-bottom: 1rem;
       text-transform: uppercase;
@@ -624,9 +624,6 @@
     &__input:-webkit-autofill:active {
       -webkit-box-shadow: 0 0 0 1000px #1d363a inset !important;
       box-shadow: 0 0 0 1000px #1d363a inset !important;
-      // font-family: 'Vollkorn', sans-serif !important;
-      // font-weight: 400 !important;
-      // line-height: 1.6 !important;
     }
 
     &__input:-webkit-autofill {
@@ -639,7 +636,7 @@
 
     &__label {
       font-size: 1.2rem;
-      font-weight: 700;
+      font-weight: 600;
       margin-left: 12.5rem;
       margin-top: 0.7rem;
       display: block;
