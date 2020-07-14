@@ -241,21 +241,36 @@
 .experience-content {
   font-size: 2rem;
   color: $color-light-grey-1;
+  margin: 0 auto;
 
   &__details {
     opacity: 0;
-    width: 62%;
-    padding: 5rem 8rem 3rem 6rem;
+    width: 70%;
+    padding: 3rem 6rem;
     transition: opacity 1s ease-in;
     margin: auto;
-    background-color: rgba($color-black, 0.5);
+    background-color: rgba($color-black, 0.6);
     border-radius: 1rem;
 
     &__list {
+      display: grid;
+      grid-template-rows: repeat(5, 1fr);
+
       &--item {
-        position: relative;
         overflow: hidden;
-        padding-top: 2rem;
+        display: grid;
+        grid-template-rows: 0.4fr 1fr 0.1fr;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+
+        grid-template-areas:
+          'date job company'
+          'desc desc desc'
+          'line line line';
+
+        & > * {
+          text-align: center;
+        }
 
         #item--alt--free {
           cursor: default;
@@ -267,6 +282,8 @@
           transition: color 0.2s ease-in;
           color: rgba($color-primary, 0.8) !important;
           padding-bottom: 0 !important;
+          grid-area: date;
+          grid-column: 1 / -1;
 
           @include respond(phone) {
             display: block !important;
@@ -304,36 +321,37 @@
 
         & hr {
           margin-bottom: 5rem;
+          grid-area: line;
         }
 
         .logo-gen {
           background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/gen_logo.png');
-          top: 0;
-          right: 41%;
         }
 
         .logo-alten {
           background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/alten_logo.png');
-          top: 5%;
-          right: 50%;
+          margin-left: 22rem;
+
+          @include respond(huge-desktop) {
+            margin-left: 32rem;
+          }
         }
 
         .logo-amadeus {
           background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/amadeus_logo.png');
-          top: 5%;
-          right: 30%;
+          margin-right: 18rem;
+
+          @include respond(huge-desktop) {
+            margin-right: 28rem;
+          }
         }
 
         .logo-ots {
           background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/ots_logo.png');
-          top: 0;
-          right: 41%;
         }
 
         .logo-free {
           background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/free_logo.png');
-          top: 0;
-          right: 41.5%;
           cursor: auto !important;
         }
 
@@ -341,7 +359,6 @@
           opacity: 0;
           transition: all 0.6s;
           visibility: hidden;
-          position: absolute;
           border-radius: 0.6rem;
           background-size: cover;
           background-position: center;
@@ -350,6 +367,8 @@
           height: 4.4rem;
           width: 11rem;
           transform: translateY(10rem);
+          grid-area: job;
+          margin: 0 auto 2rem auto;
 
           @media (hover: hover) {
             &:hover {
@@ -374,6 +393,7 @@
 
         &--date {
           transition: all 0.6s;
+          grid-area: date;
 
           @include respond(tab-land) {
             font-size: 1.7rem;
@@ -385,42 +405,19 @@
         }
 
         &--position {
-          position: absolute;
-          top: 0;
           transition: all 0.3s;
           opacity: 1;
+          grid-area: job;
 
           @include respond(phone) {
             display: none !important;
           }
         }
 
-        #position-gen {
-          right: 38%;
-        }
-
-        #position-alten {
-          right: 38%;
-        }
-
-        #position-free {
-          right: 40%;
-        }
-
-        #position-ots-dev {
-          right: 38%;
-        }
-
-        #position-ots-sup {
-          right: 36%;
-        }
-
         &--company {
-          position: absolute;
-          top: 2rem;
-          right: 0;
           text-transform: uppercase;
           transition: all 0.6s;
+          grid-area: company;
           @include respond(tab-land) {
             font-size: 1.5rem;
           }
@@ -433,8 +430,11 @@
         &--description {
           font-size: 1.2rem;
           text-align: center;
+          grid-area: desc;
 
           &--inner-list {
+            grid-area: desc;
+
             &--item {
               font-size: 1.2rem;
               text-align: center;
