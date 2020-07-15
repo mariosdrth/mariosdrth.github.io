@@ -173,10 +173,12 @@ const submitForm = event => {
   const url = 'https://email-rest-api.herokuapp.com/send-email';
   const form = $('.contact-content__form').serializeArray();
   [userName, userEmail, message] = form;
+  const body = `Email from: ${userName.value}. \nContact email address: ${userEmail.value}. \nMessage: ${message.value}`;
+  const subject = `MY_SITE - Email from: ${userName.value}`;
   const objToSend = {
-    senderName: userName.value,
-    senderEmail: userEmail.value,
-    message: message.value
+    receiver: 'mariosdrth2005@gmail.com',
+    subject: subject,
+    body: body
   };
   $('.loader-wrapper').addClass('visible');
   $('.loader-wrapper').removeClass('invisible');
