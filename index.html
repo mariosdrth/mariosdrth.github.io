@@ -53,6 +53,11 @@
             Experience
           </a>
         </li>
+        <li class="nav__list__item nav__list__item--portfolio">
+          <a id="portfolio-nav" href="#portfolio" class="nav__list__item--link">
+            Portfolio
+          </a>
+        </li>
         <li class="nav__list__item nav__list__item--contact">
           <a id="contact-nav" href="#contact" class="nav__list__item--link">
             Contact
@@ -61,7 +66,7 @@
       </ul>
     </nav>
     <main>
-      <section id="home" class="home">
+      <section id="home" class="home section-com">
         <div class="home-content">
           <div class="home-content--text">
             <h1 class="home-content--text--name">
@@ -80,7 +85,7 @@
           <a href="#about" class="home-content--btn hvr-wobble-horizontal">More</a>
         </div>
       </section>
-      <section id="about" class="about">
+      <section id="about" class="about section-com">
         <div class="about-content">
           <h2 class="about-content__header header-tertiary">
             About
@@ -137,7 +142,7 @@
           </div>
         </div>
       </section>
-      <section id="experience" class="experience">
+      <section id="experience" class="experience section-com">
         <div class="experience-content white-header-line">
           <h2 class="experience-content__header header-tertiary">
             Experience
@@ -214,7 +219,40 @@
           </div>
         </div>
       </section>
-      <section id="contact" class="contact">
+      <section id="portfolio" class="portfolio section-com">
+        <div class="portfolio-content">
+          <h2 class="portfolio-content__header header-tertiary">
+            Portfolio
+            <span class="portfolio-content__header--text"
+              >Most of my work is owned by the companies I worked for. Below are some examples of freelancing and apps for training purposes</span
+            >
+          </h2>
+          <hr class="header-hr" />
+          <div class="portfolio-content__slideshow">
+            <div class="portfolio-content__slideshow--item slider">
+              <button class="portfolio-content__slideshow--item--arrow portfolio-content__slideshow--item--left" onclick="checkImgSlideshowMedApp(-1)">
+                <i class="fas fa-arrow-circle-left"></i>
+              </button>
+              <button class="portfolio-content__slideshow--item--arrow portfolio-content__slideshow--item--right" onclick="checkImgSlideshowMedApp(+1)">
+                <i class="fas fa-arrow-circle-right"></i>
+              </button>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-1-med" onclick="redirectMedApp()">&nbsp;</div>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-2-med" onclick="redirectMedApp()">&nbsp;</div>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-3-med" onclick="redirectMedApp()">&nbsp;</div>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-4-med" onclick="redirectMedApp()">&nbsp;</div>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-5-med" onclick="redirectMedApp()">&nbsp;</div>
+              <div class="portfolio-content__slideshow--item--dots">
+                <span id="dot-1-med" class="portfolio-content__slideshow--item--dots-dot active-dot" onclick="updateIndexMedApp(5, event.target.id)"></span>
+                <span id="dot-2-med" class="portfolio-content__slideshow--item--dots-dot" onclick="updateIndexMedApp(1, event.target.id)"></span>
+                <span id="dot-3-med" class="portfolio-content__slideshow--item--dots-dot" onclick="updateIndexMedApp(2, event.target.id)"></span>
+                <span id="dot-4-med" class="portfolio-content__slideshow--item--dots-dot" onclick="updateIndexMedApp(3, event.target.id)"></span>
+                <span id="dot-5-med" class="portfolio-content__slideshow--item--dots-dot" onclick="updateIndexMedApp(4, event.target.id)"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="contact" class="contact section-com">
         <div class="contact-content white-header-line">
           <h2 class="contact-content__header header-tertiary">
             Contact

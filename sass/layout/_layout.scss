@@ -25,7 +25,7 @@
       padding: 2rem 0;
 
       &--active {
-        border-bottom: 1px solid $color-light-grey;
+        border-bottom: 2px solid $color-light-grey;
       }
 
       & a:link,
@@ -34,24 +34,36 @@
         text-decoration: none;
       }
 
+      @include respond(mid-phone) {
+        font-size: 1.8rem;
+      }
+
       @include respond(small-phone) {
-        font-size: 1.7rem;
+        font-size: 1.5rem;
       }
     }
 
     :not(:last-child) {
       margin-right: 15rem;
 
+      @include respond(tab-land) {
+        margin-right: 12rem;
+      }
+
       @include respond(phone-tab) {
-        margin-right: 10rem;
+        margin-right: 8rem;
       }
 
       @include respond(phone) {
         margin-right: 5rem;
       }
 
+      @include respond(mid-phone) {
+        margin-right: 3.75rem;
+      }
+
       @include respond(small-phone) {
-        margin-right: 4rem;
+        margin-right: 2.3rem;
       }
     }
   }
@@ -64,14 +76,17 @@
   border-bottom: 0.1rem solid $color-primary;
 }
 
-.home {
-  height: 103vh;
-  background-image: linear-gradient(to bottom, rgba($color-black, 0.5), rgba($color-black, 0.9)), url('../img/back-home-small.jpg');
+.section-com {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
   z-index: -1;
   background-repeat: no-repeat;
+}
+
+.home {
+  height: 103vh;
+  background-image: linear-gradient(to bottom, rgba($color-black, 0.5), rgba($color-black, 0.9)), url('../img/back-home-small.jpg');
   display: flex;
   flex-flow: column;
   margin-top: -9rem;
@@ -84,11 +99,6 @@
 .about {
   padding: 6rem 5rem;
   background-image: linear-gradient(rgba($color-black, 0.2), rgba($color-black, 0.2)), url('../img/back-about-small.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  z-index: -1;
-  background-repeat: no-repeat;
   color: $color-light-grey;
 
   @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 50em), only screen and (min-width: 50em) {
@@ -107,11 +117,6 @@
 .experience {
   padding: 5rem 5rem;
   background-image: linear-gradient(to bottom, rgba($color-black, 0.6), rgba($color-black, 0.9)), url('../img/back-experience-small.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  z-index: -1;
-  background-repeat: no-repeat;
 
   hr {
     margin: 1rem auto 2rem;
@@ -126,18 +131,30 @@
   }
 }
 
+.portfolio {
+  padding: 5rem 5rem;
+  background-image: linear-gradient(to bottom, rgba($color-black, 0.2), rgba($color-black, 0.2)), url('../img/back-portfolio-small.jpg');
+
+  @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 50em), only screen and (min-width: 50em) {
+    background-image: linear-gradient(to bottom, rgba($color-black, 0.2), rgba($color-black, 0.2)), url('../img/back-portfolio.jpg');
+  }
+
+  @include respond(tab-port) {
+    padding: 3rem 3rem;
+  }
+
+  @include respond(phone) {
+    padding: 2rem 2rem;
+  }
+}
+
 .contact {
   min-height: 35vh;
   padding: 5rem 0;
-  background-image: linear-gradient(to bottom, rgba($color-black, 0.4), rgba($color-black, 0.2)), url('../img/back-contact-small.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  z-index: -1;
-  background-repeat: no-repeat;
+  background-image: linear-gradient(to bottom, rgba($color-black, 0.6), rgba($color-black, 0.4)), url('../img/back-contact-small.jpg');
 
   @media only screen and (min-resolution: 192dpi), only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 50em), only screen and (min-width: 50em) {
-    background-image: linear-gradient(to bottom, rgba($color-black, 0.4), rgba($color-black, 0.2)), url('../img/back-contact.jpg');
+    background-image: linear-gradient(to bottom, rgba($color-black, 0.6), rgba($color-black, 0.4)), url('../img/back-contact.jpg');
   }
 
   @include respond(phone) {

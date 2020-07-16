@@ -20,6 +20,13 @@
     }
   }
 
+  @if $breakpoint == mid-phone {
+    // 500px
+    @media only screen and (max-width: 31.25em) {
+      @content;
+    }
+  }
+
   @if $breakpoint == phone {
     // 600px
     @media only screen and (max-width: 37.5em) {

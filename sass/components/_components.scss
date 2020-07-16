@@ -494,6 +494,324 @@
   }
 }
 
+// PORTFOLIO
+
+.portfolio-content {
+  &__header--text {
+    font-size: 2rem;
+    text-align: center;
+    color: $color-light-black;
+    padding: 1rem 0;
+    text-transform: none;
+    letter-spacing: initial;
+    display: block;
+
+    @include respond(phone) {
+      font-size: 1.5rem;
+    }
+
+    @include respond(small-phone) {
+      font-size: 1.2rem;
+    }
+  }
+
+  &__slideshow {
+    justify-content: center;
+    display: flex;
+    margin-top: 10rem;
+
+    &--item {
+      display: grid;
+      justify-content: center;
+      grid-template-rows: 80rem;
+      grid-template-columns: 80rem;
+      grid-template-areas: 'images';
+      position: relative;
+
+      &--arrow {
+        position: absolute;
+        z-index: 10;
+        background-color: transparent;
+        box-shadow: none;
+        border: none;
+
+        &:active,
+        &:focus {
+          box-shadow: none;
+          border: none;
+          outline: none;
+        }
+
+        i {
+          font-size: 3rem;
+          color: $color-light-grey-2;
+          transition: all 0.2s;
+        }
+
+        @media (hover: hover) {
+          &:hover i {
+            transform: scale(1.1);
+            color: rgba($color-light-grey-2, 0.6);
+            text-shadow: 0rem 1.5rem 4rem rgba($color-black, 0.15);
+          }
+        }
+
+        &:active i {
+          transform: scale(0.9) !important;
+          text-shadow: 0rem 1rem 3rem rgba($color-black, 0.1);
+        }
+      }
+
+      &--left {
+        top: 50%;
+        left: 0;
+      }
+
+      &--right {
+        top: 50%;
+        right: -6%;
+      }
+
+      &--img {
+        width: 100%;
+        height: 100%;
+        grid-area: images;
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        transition: all 0.4s;
+      }
+
+      &--img-1-med {
+        background-image: url('../img/med-app-patients.png');
+        z-index: 5;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: rgba($color-black, 0.05);
+          transition: all 0.4s;
+        }
+
+        @media (hover: hover) {
+          &:hover::after {
+            opacity: 0;
+          }
+        }
+
+        @media (hover: hover) {
+          &:hover {
+            transform: scale(1.02);
+          }
+        }
+
+        @media (hover: hover) {
+          &:hover ~ .portfolio-content__slideshow--item--img-2-med {
+            transform: scale(0.98);
+            margin: -2rem 3rem;
+
+            @include respond(phone-tab) {
+              margin: -1.5rem 2.5rem;
+            }
+
+            @include respond(phone) {
+              margin: -1rem 2rem;
+            }
+
+            @include respond(small-phone) {
+              margin: -1rem 1.5rem;
+            }
+          }
+        }
+
+        @media (hover: hover) {
+          &:hover ~ .portfolio-content__slideshow--item--img-3-med {
+            transform: scale(0.98);
+            margin: -3rem 4rem;
+
+            @include respond(phone-tab) {
+              margin: -3rem 4rem;
+            }
+
+            @include respond(phone) {
+              margin: -2rem 3rem;
+            }
+
+            @include respond(small-phone) {
+              margin: -1rem 1.5rem;
+            }
+          }
+        }
+
+        @media (hover: hover) {
+          &:hover ~ .portfolio-content__slideshow--item--img-4-med {
+            transform: scale(0.98);
+            margin: -4rem 5rem;
+
+            @include respond(phone-tab) {
+              margin: -4.5rem 5.5rem;
+            }
+
+            @include respond(phone) {
+              margin: -3rem 4rem;
+            }
+
+            @include respond(small-phone) {
+              margin: -1rem 1.5rem;
+            }
+          }
+        }
+
+        @media (hover: hover) {
+          &:hover ~ .portfolio-content__slideshow--item--img-5-med {
+            transform: scale(0.98);
+            margin: -5rem 6rem;
+
+            @include respond(phone-tab) {
+              margin: -6rem 7rem;
+            }
+
+            @include respond(phone) {
+              margin: -4rem 5rem;
+            }
+
+            @include respond(small-phone) {
+              margin: -1rem 1.5rem;
+            }
+          }
+        }
+      }
+
+      &--img-2-med {
+        background-image: linear-gradient(to bottom, rgba($color-black, 0.5), rgba($color-black, 0.5)), url('../img/med-app-home.png');
+        margin: -2.5rem 3.5rem;
+        z-index: 4;
+
+        @include respond(phone-tab) {
+          margin: -1.5rem 2.5rem;
+        }
+
+        @include respond(phone) {
+          margin: -1rem 2rem;
+        }
+
+        @include respond(small-phone) {
+          margin: -1rem 1.5rem;
+        }
+      }
+
+      &--img-3-med {
+        background-image: linear-gradient(to bottom, rgba($color-black, 0.5), rgba($color-black, 0.5)), url('../img/med-app-login.png');
+        margin: -4rem 5rem;
+        z-index: 3;
+
+        @include respond(phone-tab) {
+          margin: -3rem 4rem;
+        }
+
+        @include respond(phone) {
+          margin: -2rem 3rem;
+        }
+
+        @include respond(small-phone) {
+          margin: -1rem 1.5rem;
+        }
+      }
+
+      &--img-4-med {
+        background-image: linear-gradient(to bottom, rgba($color-black, 0.5), rgba($color-black, 0.5)), url('../img/med-app-sessions.png');
+        margin: -5.5rem 6.5rem;
+        z-index: 2;
+
+        @include respond(phone-tab) {
+          margin: -4.5rem 5.5rem;
+        }
+
+        @include respond(phone) {
+          margin: -3rem 4rem;
+        }
+
+        @include respond(small-phone) {
+          margin: -1rem 1.5rem;
+        }
+      }
+
+      &--img-5-med {
+        background-image: linear-gradient(to bottom, rgba($color-black, 0.5), rgba($color-black, 0.5)), url('../img/med-app-cont-form.png');
+        margin: -7rem 8rem;
+        z-index: 1;
+
+        @include respond(phone-tab) {
+          margin: -6rem 7rem;
+        }
+
+        @include respond(phone) {
+          margin: -4rem 5rem;
+        }
+
+        @include respond(small-phone) {
+          margin: -1rem 1.5rem;
+        }
+      }
+
+      &--dots {
+        text-align: center;
+        position: absolute;
+        left: 48%;
+        bottom: 1%;
+        z-index: 100;
+
+        &-dot {
+          cursor: pointer;
+          height: 1.5rem;
+          width: 1.5rem;
+          margin: 0 0.2rem;
+          background-color: #bbb;
+          border-radius: 50%;
+          display: inline-block;
+          transition: background-color 0.6s ease;
+        }
+
+        @include respond(mid-phone) {
+          left: 45%;
+        }
+      }
+
+      @include respond(tab-port) {
+        grid-template-rows: 70rem;
+        grid-template-columns: 70rem;
+      }
+
+      @include respond(phone-tab) {
+        grid-template-rows: 55rem;
+        grid-template-columns: 55rem;
+      }
+
+      @include respond(phone) {
+        grid-template-rows: 45rem;
+        grid-template-columns: 45rem;
+      }
+
+      @include respond(mid-phone) {
+        grid-template-rows: 35rem;
+        grid-template-columns: 35rem;
+      }
+    }
+
+    @include respond(phone) {
+      margin-top: 6rem;
+    }
+
+    @include respond(small-phone) {
+      margin-top: 2rem;
+    }
+  }
+}
+
 // CONTACT
 
 .contact-content {
@@ -789,6 +1107,7 @@
   position: fixed;
   bottom: 5%;
   right: 2%;
+  z-index: 99999;
 
   & i {
     font-size: 5rem;
@@ -805,6 +1124,7 @@
       transform: scale(1.2);
       -webkit-transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
       transition-timing-function: cubic-bezier(0.47, 2.02, 0.31, -0.36);
+      text-shadow: 0 0 4rem rgba($color-primary-light, 0.25);
     }
 
     &:active {

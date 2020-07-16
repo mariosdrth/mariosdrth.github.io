@@ -1,7 +1,9 @@
 const homeBreakpoint = $('#home').offset().top + $('#home').outerHeight() - 100;
 const aboutBreakpoint = $('#about').offset().top + $('#about').outerHeight() - 100;
 const experienceBreakpoint = $('#experience').offset().top + $('#experience').outerHeight() - 100;
+const portfolioBreakpoint = $('#portfolio').offset().top + $('#portfolio').outerHeight() - 100;
 const contactBreakpoint = $('#contact').offset().top + $('#contact').outerHeight() - 100;
+let slideIndexMedApp = 0;
 
 $('document').ready(() => {
   adaptNav();
@@ -94,7 +96,7 @@ const showExperience = () => {
 
 const showContactForm = () => {
   const scroll = $(window).scrollTop();
-  if (scroll > experienceBreakpoint - 400 || scroll + $(window).height() > getDocHeight() - 20) {
+  if (scroll > portfolioBreakpoint - 400 || scroll + $(window).height() > getDocHeight() - 20) {
     $('.contact-content__form').addClass('show-contact-form');
   }
 };
@@ -128,6 +130,8 @@ const adaptActiveClassOnNav = () => {
   } else if (scroll > aboutBreakpoint && scroll <= experienceBreakpoint) {
     addClassToExperienceNav();
   } else if (scroll > experienceBreakpoint && scroll <= contactBreakpoint) {
+    addClassToPortfolioNav();
+  } else if (scroll > portfolioBreakpoint && scroll <= portfolioBreakpoint) {
     addClassToContactNav();
   }
   if (scroll + $(window).height() > getDocHeight() - 20) {
@@ -140,6 +144,7 @@ const addClassToHomeNav = () => {
   $('#about-nav').removeClass('nav__list__item--active');
   $('#experience-nav').removeClass('nav__list__item--active');
   $('#contact-nav').removeClass('nav__list__item--active');
+  $('#portfolio-nav').removeClass('nav__list__item--active');
 };
 
 const addClassToAboutNav = () => {
@@ -147,6 +152,7 @@ const addClassToAboutNav = () => {
   $('#home-nav').removeClass('nav__list__item--active');
   $('#experience-nav').removeClass('nav__list__item--active');
   $('#contact-nav').removeClass('nav__list__item--active');
+  $('#portfolio-nav').removeClass('nav__list__item--active');
 };
 
 const addClassToExperienceNav = () => {
@@ -154,6 +160,15 @@ const addClassToExperienceNav = () => {
   $('#home-nav').removeClass('nav__list__item--active');
   $('#about-nav').removeClass('nav__list__item--active');
   $('#contact-nav').removeClass('nav__list__item--active');
+  $('#portfolio-nav').removeClass('nav__list__item--active');
+};
+
+const addClassToPortfolioNav = () => {
+  $('#portfolio-nav').addClass('nav__list__item--active');
+  $('#contact-nav').removeClass('nav__list__item--active');
+  $('#home-nav').removeClass('nav__list__item--active');
+  $('#about-nav').removeClass('nav__list__item--active');
+  $('#experience-nav').removeClass('nav__list__item--active');
 };
 
 const addClassToContactNav = () => {
@@ -161,6 +176,7 @@ const addClassToContactNav = () => {
   $('#home-nav').removeClass('nav__list__item--active');
   $('#about-nav').removeClass('nav__list__item--active');
   $('#experience-nav').removeClass('nav__list__item--active');
+  $('#portfolio-nav').removeClass('nav__list__item--active');
 };
 
 const getDocHeight = () => {
@@ -209,4 +225,97 @@ const animateElement = (elementIdentifier, spanClass) => {
   });
 
   contentName.html(newDom);
+};
+
+const checkImgSlideshowMedApp = direction => {
+  if (direction === 1) {
+    if (slideIndexMedApp < 5) {
+      slideIndexMedApp++;
+      updateImgSlideshowMedApp();
+    } else {
+      slideIndexMedApp = 1;
+      updateImgSlideshowMedApp();
+    }
+  } else if (direction === -1) {
+    if (slideIndexMedApp > 1) {
+      slideIndexMedApp--;
+      updateImgSlideshowMedApp();
+    } else if (slideIndexMedApp === 0) {
+      slideIndexMedApp = 4;
+      updateImgSlideshowMedApp();
+    } else {
+      slideIndexMedApp = 5;
+      updateImgSlideshowMedApp();
+    }
+  }
+};
+
+const updateIndexMedApp = (index, id) => {
+  clearDotsMedApp();
+
+  $(`#${id}`).addClass('active-dot');
+
+  slideIndexMedApp = index;
+  updateImgSlideshowMedApp();
+};
+
+const clearDotsMedApp = () => {
+  $('#dot-1-med').removeClass('active-dot');
+  $('#dot-2-med').removeClass('active-dot');
+  $('#dot-3-med').removeClass('active-dot');
+  $('#dot-4-med').removeClass('active-dot');
+  $('#dot-5-med').removeClass('active-dot');
+};
+
+const updateImgSlideshowMedApp = () => {
+  const imageOne = $('.portfolio-content__slideshow--item--img-1-med');
+  const imageTwo = $('.portfolio-content__slideshow--item--img-2-med');
+  const imageThree = $('.portfolio-content__slideshow--item--img-3-med');
+  const imageFour = $('.portfolio-content__slideshow--item--img-4-med');
+  const imageFive = $('.portfolio-content__slideshow--item--img-5-med');
+  if (slideIndexMedApp === 1) {
+    imageOne.css('background-image', 'url(../img/med-app-home.png)');
+    imageTwo.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-login.png)');
+    imageThree.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-sessions.png)');
+    imageFour.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-cont-form.png)');
+    imageFive.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-patients.png)');
+    clearDotsMedApp();
+    $('#dot-2-med').addClass('active-dot');
+  } else if (slideIndexMedApp === 2) {
+    imageOne.css('background-image', 'url(../img/med-app-login.png)');
+    imageTwo.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-sessions.png)');
+    imageThree.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-cont-form.png)');
+    imageFour.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-patients.png)');
+    imageFive.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-home.png)');
+    clearDotsMedApp();
+    $('#dot-3-med').addClass('active-dot');
+  } else if (slideIndexMedApp === 3) {
+    imageOne.css('background-image', 'url(../img/med-app-sessions.png)');
+    imageTwo.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-cont-form.png)');
+    imageThree.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-patients.png)');
+    imageFour.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-home.png)');
+    imageFive.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-login.png)');
+    clearDotsMedApp();
+    $('#dot-4-med').addClass('active-dot');
+  } else if (slideIndexMedApp === 4) {
+    imageOne.css('background-image', 'url(../img/med-app-cont-form.png)');
+    imageTwo.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-patients.png)');
+    imageThree.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-home.png)');
+    imageFour.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-login.png)');
+    imageFive.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-sessions.png)');
+    clearDotsMedApp();
+    $('#dot-5-med').addClass('active-dot');
+  } else if (slideIndexMedApp === 5) {
+    imageOne.css('background-image', 'url(../img/med-app-patients.png)');
+    imageTwo.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-home.png)');
+    imageThree.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-login.png)');
+    imageFour.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-sessions.png)');
+    imageFive.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-cont-form.png)');
+    clearDotsMedApp();
+    $('#dot-1-med').addClass('active-dot');
+  }
+};
+
+const redirectMedApp = () => {
+  window.open('https://med-app-client.herokuapp.com/', '_blank');
 };
