@@ -254,3 +254,9 @@
     transform: perspective(500px) translate3d(0, 0, 0);
   }
 }
+
+@keyframes text-wave {
+  to {
+    background-position: 200% center;
+  }
+}

@@ -26,7 +26,7 @@ html {
     font-size: 50%;
   }
 
-  @include respond(big-desktop) {
+  @include respond(huge-desktop) {
     font-size: 75%;
   }
 }
@@ -73,5 +73,18 @@ a:active {
 @include respond(tab-port) {
   .tooltip {
     display: none !important;
+  }
+}
+
+button {
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+
+  &:active,
+  &:focus {
+    box-shadow: none;
+    border: none;
+    outline: none;
   }
 }

@@ -519,6 +519,8 @@
     justify-content: center;
     display: flex;
     margin-top: 10rem;
+    opacity: 0;
+    transition: all 0.4s;
 
     &--item {
       display: grid;
@@ -528,19 +530,31 @@
       grid-template-areas: 'images';
       position: relative;
 
+      .fullscreen {
+        z-index: 500;
+        position: absolute;
+        right: 2%;
+        bottom: 1%;
+        cursor: pointer;
+
+        i {
+          font-size: 2.6rem;
+          color: rgba($color-black, 0.7);
+          transition: all 0.3s;
+        }
+
+        @media (hover: hover) {
+          &:hover i {
+            color: rgba($color-black, 0.9);
+            text-shadow: 0 0 2rem rgba($color-black, 0.4);
+            transform: scale(1.15);
+          }
+        }
+      }
+
       &--arrow {
         position: absolute;
         z-index: 10;
-        background-color: transparent;
-        box-shadow: none;
-        border: none;
-
-        &:active,
-        &:focus {
-          box-shadow: none;
-          border: none;
-          outline: none;
-        }
 
         i {
           font-size: 3rem;
@@ -578,8 +592,52 @@
         grid-area: images;
         background-size: cover;
         background-position: center;
-        cursor: pointer;
         transition: all 0.4s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          cursor: pointer;
+          margin-left: 6rem;
+          width: 60%;
+          height: 50%;
+          z-index: 200;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          span {
+            text-transform: uppercase;
+            font-size: 3rem;
+            letter-spacing: 1.5rem;
+            background: linear-gradient(to right, $color-primary-dark 0, $color-white 30%, $color-primary-dark 60%);
+            background-size: 200% auto;
+            color: $color-white;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: text-wave 2s linear infinite;
+            transition: opacity 0.6s;
+
+            @include respond(phone) {
+              font-size: 2rem;
+              letter-spacing: 1rem;
+            }
+
+            @include respond(small-phone) {
+              font-size: 1.5rem;
+            }
+          }
+
+          @include respond(phone) {
+            margin-left: 4rem;
+          }
+
+          @include respond(small-phone) {
+            margin-left: 2rem;
+          }
+        }
       }
 
       &--img-1-med {
@@ -593,7 +651,7 @@
           height: 100%;
           top: 0;
           left: 0;
-          background: rgba($color-black, 0.05);
+          background: rgba($color-black, 0.08);
           transition: all 0.4s;
         }
 
@@ -606,6 +664,12 @@
         @media (hover: hover) {
           &:hover {
             transform: scale(1.02);
+          }
+        }
+
+        @media (hover: hover) {
+          &:hover a span {
+            opacity: 0;
           }
         }
 

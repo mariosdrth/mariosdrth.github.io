@@ -36,6 +36,21 @@
         <div class="sk-chase-dot">&nbsp;</div>
       </div>
     </div>
+    <div class="img-wrapper" onclick="closeFullScreenImg()">
+      <button class="img-wrapper-btn" onclick="slideImage(event, -1)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <div class="img-wrapper-images">
+        <img class="img-wrapper-images-img img-wrapper-images-back-1" src="img/med-app-sessions.png" alt="Screenshot" />
+        <img class="img-wrapper-images-img img-wrapper-images-back-2" src="img/med-app-cont-form.png" alt="Screenshot" />
+        <img class="img-wrapper-images-img img-wrapper-images-back-3" src="img/med-app-patients.png" alt="Screenshot" />
+        <img class="img-wrapper-images-img img-wrapper-images-back-4" src="img/med-app-home.png" alt="Screenshot" />
+        <img class="img-wrapper-images-img img-wrapper-images-back-5" src="img/med-app-login.png" alt="Screenshot" />
+      </div>
+      <button class="img-wrapper-btn" onclick="slideImage(event, 1)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
     <nav class="nav">
       <ul class="nav__list sibling-fade">
         <li class="nav__list__item nav__list__item--home">
@@ -223,30 +238,33 @@
         <div class="portfolio-content">
           <h2 class="portfolio-content__header header-tertiary">
             Portfolio
-            <span class="portfolio-content__header--text"
-              >Most of my work is owned by the companies I worked for. Below are some examples of freelancing and apps for training purposes</span
-            >
+            <span class="portfolio-content__header--text">Most of my work is owned by the companies I worked for. Below are some examples of my freelancing work</span>
           </h2>
           <hr class="header-hr" />
           <div class="portfolio-content__slideshow">
-            <div class="portfolio-content__slideshow--item slider">
+            <div class="portfolio-content__slideshow--item">
               <button class="portfolio-content__slideshow--item--arrow portfolio-content__slideshow--item--left" onclick="checkImgSlideshowMedApp(-1)">
                 <i class="fas fa-arrow-circle-left"></i>
               </button>
               <button class="portfolio-content__slideshow--item--arrow portfolio-content__slideshow--item--right" onclick="checkImgSlideshowMedApp(+1)">
                 <i class="fas fa-arrow-circle-right"></i>
               </button>
-              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-1-med" onclick="redirectMedApp()">&nbsp;</div>
-              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-2-med" onclick="redirectMedApp()">&nbsp;</div>
-              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-3-med" onclick="redirectMedApp()">&nbsp;</div>
-              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-4-med" onclick="redirectMedApp()">&nbsp;</div>
-              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-5-med" onclick="redirectMedApp()">&nbsp;</div>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-1-med">
+                <a href="https://med-app-client.herokuapp.com/" target="_blank"><span>Go to site</span></a>
+              </div>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-2-med">&nbsp;</div>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-3-med">&nbsp;</div>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-4-med">&nbsp;</div>
+              <div class="portfolio-content__slideshow--item--img portfolio-content__slideshow--item--img-5-med">&nbsp;</div>
               <div class="portfolio-content__slideshow--item--dots">
-                <span id="dot-1-med" class="portfolio-content__slideshow--item--dots-dot active-dot" onclick="updateIndexMedApp(5, event.target.id)"></span>
+                <span id="dot-1-med" class="portfolio-content__slideshow--item--dots-dot active-dot" onclick="updateIndexMedApp(0, event.target.id)"></span>
                 <span id="dot-2-med" class="portfolio-content__slideshow--item--dots-dot" onclick="updateIndexMedApp(1, event.target.id)"></span>
                 <span id="dot-3-med" class="portfolio-content__slideshow--item--dots-dot" onclick="updateIndexMedApp(2, event.target.id)"></span>
                 <span id="dot-4-med" class="portfolio-content__slideshow--item--dots-dot" onclick="updateIndexMedApp(3, event.target.id)"></span>
                 <span id="dot-5-med" class="portfolio-content__slideshow--item--dots-dot" onclick="updateIndexMedApp(4, event.target.id)"></span>
+              </div>
+              <div class="fullscreen" onclick="fullScreenImg()">
+                <i class="fas fa-expand"></i>
               </div>
             </div>
           </div>

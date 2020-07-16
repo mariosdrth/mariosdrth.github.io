@@ -4,6 +4,7 @@ const experienceBreakpoint = $('#experience').offset().top + $('#experience').ou
 const portfolioBreakpoint = $('#portfolio').offset().top + $('#portfolio').outerHeight() - 100;
 const contactBreakpoint = $('#contact').offset().top + $('#contact').outerHeight() - 100;
 let slideIndexMedApp = 0;
+let slideIndexMedAppFullScreen = 0;
 
 $('document').ready(() => {
   adaptNav();
@@ -18,6 +19,7 @@ $('document').ready(() => {
   $(window).scroll(toggleDisplayToTopElement);
   $(window).scroll(showSummary);
   $(window).scroll(showExperience);
+  $(window).scroll(showPortfolio);
   $(window).scroll(showContactForm);
 
   $('#home-nav').click(() => adaptActiveClassOnNav);
@@ -28,6 +30,7 @@ $('document').ready(() => {
   $('.nav__list__item--home').click(() => $('#home').get(0).scrollIntoView());
   $('.nav__list__item--about').click(() => $('#about').get(0).scrollIntoView());
   $('.nav__list__item--experience').click(() => $('#experience').get(0).scrollIntoView());
+  $('.nav__list__item--portfolio').click(() => $('#portfolio').get(0).scrollIntoView());
   $('.nav__list__item--contact').click(() => $('#contact').get(0).scrollIntoView());
 
   $('body').tooltip({ selector: '[data-toggle=tooltip]' });
@@ -42,6 +45,8 @@ $('document').ready(() => {
   $('.alert__content--close-btn').click(() => toggleAlert());
 
   $('#item--alt--free').click(event => event.preventDefault());
+
+  $(document).keydown(event => checkArrowsPressedForSlideshow(event.keyCode));
 });
 
 const toggleAlert = () => {
@@ -91,6 +96,13 @@ const showExperience = () => {
   const scroll = $(window).scrollTop();
   if (scroll > aboutBreakpoint - 400 || scroll + $(window).height() > getDocHeight() - 20) {
     $('.experience-content__details').addClass('show');
+  }
+};
+
+const showPortfolio = () => {
+  const scroll = $(window).scrollTop();
+  if (scroll > experienceBreakpoint - 400 || scroll + $(window).height() > getDocHeight() - 20) {
+    $('.portfolio-content__slideshow').addClass('show');
   }
 };
 
@@ -229,22 +241,19 @@ const animateElement = (elementIdentifier, spanClass) => {
 
 const checkImgSlideshowMedApp = direction => {
   if (direction === 1) {
-    if (slideIndexMedApp < 5) {
+    if (slideIndexMedApp < 4) {
       slideIndexMedApp++;
       updateImgSlideshowMedApp();
     } else {
-      slideIndexMedApp = 1;
+      slideIndexMedApp = 0;
       updateImgSlideshowMedApp();
     }
   } else if (direction === -1) {
-    if (slideIndexMedApp > 1) {
+    if (slideIndexMedApp > 0) {
       slideIndexMedApp--;
       updateImgSlideshowMedApp();
-    } else if (slideIndexMedApp === 0) {
-      slideIndexMedApp = 4;
-      updateImgSlideshowMedApp();
     } else {
-      slideIndexMedApp = 5;
+      slideIndexMedApp = 4;
       updateImgSlideshowMedApp();
     }
   }
@@ -273,7 +282,15 @@ const updateImgSlideshowMedApp = () => {
   const imageThree = $('.portfolio-content__slideshow--item--img-3-med');
   const imageFour = $('.portfolio-content__slideshow--item--img-4-med');
   const imageFive = $('.portfolio-content__slideshow--item--img-5-med');
-  if (slideIndexMedApp === 1) {
+  if (slideIndexMedApp === 0) {
+    imageOne.css('background-image', 'url(../img/med-app-patients.png)');
+    imageTwo.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-home.png)');
+    imageThree.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-login.png)');
+    imageFour.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-sessions.png)');
+    imageFive.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-cont-form.png)');
+    clearDotsMedApp();
+    $('#dot-1-med').addClass('active-dot');
+  } else if (slideIndexMedApp === 1) {
     imageOne.css('background-image', 'url(../img/med-app-home.png)');
     imageTwo.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-login.png)');
     imageThree.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-sessions.png)');
@@ -305,17 +322,150 @@ const updateImgSlideshowMedApp = () => {
     imageFive.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-sessions.png)');
     clearDotsMedApp();
     $('#dot-5-med').addClass('active-dot');
-  } else if (slideIndexMedApp === 5) {
-    imageOne.css('background-image', 'url(../img/med-app-patients.png)');
-    imageTwo.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-home.png)');
-    imageThree.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-login.png)');
-    imageFour.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-sessions.png)');
-    imageFive.css('background-image', 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/med-app-cont-form.png)');
-    clearDotsMedApp();
-    $('#dot-1-med').addClass('active-dot');
   }
 };
 
-const redirectMedApp = () => {
-  window.open('https://med-app-client.herokuapp.com/', '_blank');
+const fullScreenImg = () => {
+  $('html').css('overflow', 'hidden');
+  updateImage();
+  $('.img-wrapper').addClass('img-wrapper-active');
+};
+
+const closeFullScreenImg = () => {
+  $('.img-wrapper').removeClass('img-wrapper-active');
+  $('html').css('overflow', 'auto');
+  slideIndexMedAppFullScreen = 0;
+  updateImagesClasses();
+};
+
+const updateImage = () => {
+  if (slideIndexMedApp === 0) {
+    $('.img-wrapper-images-back-1').attr('src', 'img/med-app-sessions.png');
+    $('.img-wrapper-images-back-2').attr('src', 'img/med-app-cont-form.png');
+    $('.img-wrapper-images-back-3').attr('src', 'img/med-app-patients.png');
+    $('.img-wrapper-images-back-4').attr('src', 'img/med-app-home.png');
+    $('.img-wrapper-images-back-5').attr('src', 'img/med-app-login.png');
+  } else if (slideIndexMedApp === 1) {
+    $('.img-wrapper-images-back-1').attr('src', 'img/med-app-cont-form.png');
+    $('.img-wrapper-images-back-2').attr('src', 'img/med-app-patients.png');
+    $('.img-wrapper-images-back-3').attr('src', 'img/med-app-home.png');
+    $('.img-wrapper-images-back-4').attr('src', 'img/med-app-login.png');
+    $('.img-wrapper-images-back-5').attr('src', 'img/med-app-sessions.png');
+  } else if (slideIndexMedApp === 2) {
+    $('.img-wrapper-images-back-1').attr('src', 'img/med-app-patients.png');
+    $('.img-wrapper-images-back-2').attr('src', 'img/med-app-home.png');
+    $('.img-wrapper-images-back-3').attr('src', 'img/med-app-login.png');
+    $('.img-wrapper-images-back-4').attr('src', 'img/med-app-sessions.png');
+    $('.img-wrapper-images-back-5').attr('src', 'img/med-app-cont-form.png');
+  } else if (slideIndexMedApp === 3) {
+    $('.img-wrapper-images-back-1').attr('src', 'img/med-app-home.png');
+    $('.img-wrapper-images-back-2').attr('src', 'img/med-app-login.png');
+    $('.img-wrapper-images-back-3').attr('src', 'img/med-app-sessions.png');
+    $('.img-wrapper-images-back-4').attr('src', 'img/med-app-cont-form.png');
+    $('.img-wrapper-images-back-5').attr('src', 'img/med-app-patients.png');
+  } else if (slideIndexMedApp === 4) {
+    $('.img-wrapper-images-back-1').attr('src', 'img/med-app-login.png');
+    $('.img-wrapper-images-back-2').attr('src', 'img/med-app-sessions.png');
+    $('.img-wrapper-images-back-3').attr('src', 'img/med-app-cont-form.png');
+    $('.img-wrapper-images-back-4').attr('src', 'img/med-app-patients.png');
+    $('.img-wrapper-images-back-5').attr('src', 'img/med-app-home.png');
+  }
+};
+
+const slideImage = (event, direction) => {
+  event.stopPropagation();
+  translateImages(direction);
+  checkImgSlideshowMedApp(direction);
+};
+
+const translateImages = direction => {
+  if (direction === 1) {
+    if (slideIndexMedAppFullScreen < 4) {
+      slideIndexMedAppFullScreen++;
+      updateImagesClasses();
+    } else {
+      slideIndexMedAppFullScreen = 0;
+      updateImagesClasses();
+    }
+  } else if (direction === -1) {
+    if (slideIndexMedAppFullScreen > 0) {
+      slideIndexMedAppFullScreen--;
+      updateImagesClasses();
+    } else {
+      slideIndexMedAppFullScreen = 4;
+      updateImagesClasses();
+    }
+  }
+};
+
+const updateImagesClasses = () => {
+  const imgBackOne = $('.img-wrapper-images-back-1');
+  const imgBackTwo = $('.img-wrapper-images-back-2');
+  const imgBackThree = $('.img-wrapper-images-back-3');
+  const imgBackFour = $('.img-wrapper-images-back-4');
+  const imgBackFive = $('.img-wrapper-images-back-5');
+
+  const transformOne = 'scale(0.4) translateX(-400rem)';
+  const transformTwo = 'scale(0.7) translateX(-60rem)';
+  const transformThree = 'none';
+  const transformFour = 'scale(0.7) translateX(60rem)';
+  const transformFive = 'scale(0.4) translateX(400rem)';
+
+  const opacityOne = '0';
+  const opacityTwo = '0.6';
+  const opacityThree = '1';
+  const opacityFour = '0.6';
+  const opacityFive = '0';
+
+  const zIndexOne = '1';
+  const zIndexTwo = '2';
+  const zIndexThree = '3';
+  const zIndexFour = '2';
+  const zIndexFive = '1';
+
+  if (slideIndexMedAppFullScreen === 0) {
+    imgBackOne.css('transform', transformOne).css('opacity', opacityOne).css('z-index', zIndexOne);
+    imgBackTwo.css('transform', transformTwo).css('opacity', opacityTwo).css('z-index', zIndexTwo);
+    imgBackThree.css('transform', transformThree).css('opacity', opacityThree).css('z-index', zIndexThree);
+    imgBackFour.css('transform', transformFour).css('opacity', opacityFour).css('z-index', zIndexFour);
+    imgBackFive.css('transform', transformFive).css('opacity', opacityFive).css('z-index', zIndexFive);
+  } else if (slideIndexMedAppFullScreen === 1) {
+    imgBackOne.css('transform', transformFive).css('opacity', opacityFive).css('z-index', zIndexFive);
+    imgBackTwo.css('transform', transformOne).css('opacity', opacityOne).css('z-index', zIndexOne);
+    imgBackThree.css('transform', transformTwo).css('opacity', opacityTwo).css('z-index', zIndexTwo);
+    imgBackFour.css('transform', transformThree).css('opacity', opacityThree).css('z-index', zIndexThree);
+    imgBackFive.css('transform', transformFour).css('opacity', opacityFour).css('z-index', zIndexFour);
+  } else if (slideIndexMedAppFullScreen === 2) {
+    imgBackOne.css('transform', transformFour).css('opacity', opacityFour).css('z-index', zIndexFour);
+    imgBackTwo.css('transform', transformFive).css('opacity', opacityFive).css('z-index', zIndexFive);
+    imgBackThree.css('transform', transformOne).css('opacity', opacityOne).css('z-index', zIndexOne);
+    imgBackFour.css('transform', transformTwo).css('opacity', opacityTwo).css('z-index', zIndexTwo);
+    imgBackFive.css('transform', transformThree).css('opacity', opacityThree).css('z-index', zIndexThree);
+  } else if (slideIndexMedAppFullScreen === 3) {
+    imgBackOne.css('transform', transformThree).css('opacity', opacityThree).css('z-index', zIndexThree);
+    imgBackTwo.css('transform', transformFour).css('opacity', opacityFour).css('z-index', zIndexFour);
+    imgBackThree.css('transform', transformFive).css('opacity', opacityFive).css('z-index', zIndexFive);
+    imgBackFour.css('transform', transformOne).css('opacity', opacityOne).css('z-index', zIndexOne);
+    imgBackFive.css('transform', transformTwo).css('opacity', opacityTwo).css('z-index', zIndexTwo);
+  } else if (slideIndexMedAppFullScreen === 4) {
+    imgBackOne.css('transform', transformTwo).css('opacity', opacityTwo).css('z-index', zIndexTwo);
+    imgBackTwo.css('transform', transformThree).css('opacity', opacityThree).css('z-index', zIndexThree);
+    imgBackThree.css('transform', transformFour).css('opacity', opacityFour).css('z-index', zIndexFour);
+    imgBackFour.css('transform', transformFive).css('opacity', opacityFive).css('z-index', zIndexFive);
+    imgBackFive.css('transform', transformOne).css('opacity', opacityOne).css('z-index', zIndexOne);
+  }
+};
+
+const checkArrowsPressedForSlideshow = keyCode => {
+  if ($('.img-wrapper').css('z-index') > 0) {
+    if (keyCode === 37) {
+      translateImages(-1);
+      checkImgSlideshowMedApp(-1);
+    } else if (keyCode === 39) {
+      translateImages(1);
+      checkImgSlideshowMedApp(1);
+    } else if (keyCode === 27) {
+      closeFullScreenImg();
+    }
+  }
 };

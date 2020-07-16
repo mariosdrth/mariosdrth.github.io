@@ -1,3 +1,104 @@
+.img-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: -9999999;
+  transition: opacity 0.3s, backdrop-filter 0.3s, background-color 0.3s;
+  opacity: 0;
+  overflow: hidden;
+
+  &-images {
+    display: grid;
+    grid-template-areas: 'images';
+
+    &-back-1 {
+      transform: scale(0.4) translateX(-400rem);
+      opacity: 0;
+      z-index: 1;
+    }
+
+    &-back-2 {
+      transform: scale(0.7) translateX(-60rem);
+      opacity: 0.6;
+      z-index: 2;
+    }
+
+    &-back-3 {
+      transform: none;
+      opacity: 1;
+      z-index: 3;
+    }
+
+    &-back-4 {
+      transform: scale(0.7) translateX(60rem);
+      opacity: 0.6;
+      z-index: 2;
+    }
+
+    &-back-5 {
+      transform: scale(0.4) translateX(400rem);
+      opacity: 0;
+      z-index: 1;
+    }
+
+    &-img {
+      height: 85rem;
+      grid-area: images;
+      transition: all 0.5s;
+
+      @include respond(phone-tab) {
+        height: 62rem;
+      }
+
+      @include respond(phone) {
+        height: 55rem;
+      }
+
+      @include respond(mid-phone) {
+        height: 42rem;
+      }
+
+      @include respond(small-phone) {
+        height: 35rem;
+      }
+    }
+  }
+
+  &-btn {
+    height: 6rem;
+    width: 6rem;
+    z-index: 5;
+
+    i {
+      font-size: 3rem;
+      color: $color-light-grey;
+      transition: all 0.2s;
+    }
+
+    @media (hover: hover) {
+      &:hover i {
+        color: rgba($color-light-grey, 0.5);
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+.img-wrapper-active {
+  opacity: 1;
+  z-index: 9999999;
+
+  @supports (backdrop-filter: blur(10px)) {
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, 0.4);
+  }
+}
+
 .active-dot {
   background-color: #717171 !important;
 }
