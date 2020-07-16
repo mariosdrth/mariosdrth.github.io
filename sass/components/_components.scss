@@ -1,4 +1,184 @@
-//HOME
+// IMAGE-WRAPPER
+.img-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: -9999999;
+  transition: opacity 0.3s, backdrop-filter 0.3s, background-color 0.3s;
+  opacity: 0;
+  overflow: hidden;
+
+  &-images {
+    display: grid;
+    grid-template-areas: 'images';
+
+    &-back-1 {
+      transform: scale(0.6) translateX(-42rem);
+      opacity: 0.75;
+      z-index: 1;
+
+      @include respond(tab-land) {
+        transform: scale(0.6) translateX(-32rem);
+      }
+
+      @include respond(phone-tab) {
+        transform: scale(0.6) translateX(-28rem);
+      }
+
+      @include respond(phone) {
+        transform: scale(0.6) translateX(-22rem);
+      }
+
+      @include respond(mid-phone) {
+        transform: scale(0.6) translateX(-18rem);
+      }
+
+      @include respond(small-phone) {
+        transform: scale(0.6) translateX(-14.5rem);
+      }
+    }
+
+    &-back-2 {
+      transform: scale(0.7) translateX(-25rem);
+      opacity: 0.85;
+      z-index: 2;
+
+      @include respond(tab-land) {
+        transform: scale(0.7) translateX(-19rem);
+      }
+
+      @include respond(phone-tab) {
+        transform: scale(0.7) translateX(-17rem);
+      }
+
+      @include respond(phone) {
+        transform: scale(0.7) translateX(-14rem);
+      }
+
+      @include respond(mid-phone) {
+        transform: scale(0.7) translateX(-11rem);
+      }
+
+      @include respond(small-phone) {
+        transform: scale(0.7) translateX(-9rem);
+      }
+    }
+
+    &-back-3 {
+      transform: none;
+      opacity: 1;
+      z-index: 3;
+    }
+
+    &-back-4 {
+      transform: scale(0.7) translateX(25rem);
+      opacity: 0.85;
+      z-index: 2;
+
+      @include respond(tab-land) {
+        transform: scale(0.7) translateX(19rem);
+      }
+
+      @include respond(phone-tab) {
+        transform: scale(0.7) translateX(17rem);
+      }
+
+      @include respond(phone) {
+        transform: scale(0.7) translateX(14rem);
+      }
+
+      @include respond(mid-phone) {
+        transform: scale(0.7) translateX(11rem);
+      }
+
+      @include respond(small-phone) {
+        transform: scale(0.7) translateX(9rem);
+      }
+    }
+
+    &-back-5 {
+      transform: scale(0.6) translateX(42rem);
+      opacity: 0.75;
+      z-index: 1;
+
+      @include respond(tab-land) {
+        transform: scale(0.6) translateX(32rem);
+      }
+
+      @include respond(phone-tab) {
+        transform: scale(0.6) translateX(28rem);
+      }
+
+      @include respond(phone) {
+        transform: scale(0.6) translateX(22rem);
+      }
+
+      @include respond(mid-phone) {
+        transform: scale(0.6) translateX(18rem);
+      }
+
+      @include respond(small-phone) {
+        transform: scale(0.6) translateX(14.5rem);
+      }
+    }
+
+    &-img {
+      height: 85rem;
+      grid-area: images;
+      transition: all 0.5s;
+
+      @include respond(tab-land) {
+        height: 75rem;
+      }
+
+      @include respond(phone-tab) {
+        height: 62rem;
+      }
+
+      @include respond(phone) {
+        height: 55rem;
+      }
+
+      @include respond(mid-phone) {
+        height: 42rem;
+      }
+
+      @include respond(small-phone) {
+        height: 35rem;
+      }
+
+      @media (hover: none) {
+        touch-action: none !important;
+      }
+    }
+  }
+
+  &-btn {
+    height: 6rem;
+    width: 6rem;
+    z-index: 5;
+
+    i {
+      font-size: 3rem;
+      color: $color-light-grey;
+      transition: all 0.2s;
+    }
+
+    @media (hover: hover) {
+      &:hover i {
+        color: rgba($color-light-grey, 0.5);
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+// HOME
 
 .home-content {
   flex: 1;
@@ -83,7 +263,7 @@
   }
 }
 
-//ABOUT
+// ABOUT
 
 .about-content {
   &__details {
@@ -637,6 +817,10 @@
           @include respond(small-phone) {
             margin-left: 2rem;
           }
+        }
+
+        @media (hover: none) {
+          touch-action: none;
         }
       }
 

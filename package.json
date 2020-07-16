@@ -13,7 +13,7 @@
     "remove-files:css": "del-cli css/style.prefix.css css/style.comp.css",
     "build:css": "npm-run-all compile:sass prefix:css compress:css remove-files:css",
     "minify:js": "terser js/index.js -o js/index-temp.min.js -c -m",
-    "concat:js": "concat -o js/index.min.js js/lib/axios.min.js js/lib/popper.min.js js/lib/jquery-3.5.1.min.js js/lib/font-awsome.min.js js/lib/bootstrap.min.js js/index-temp.min.js",
+    "concat:js": "concat -o js/index.min.js js/lib/axios.min.js js/lib/popper.min.js js/lib/jquery-3.5.1.min.js js/lib/jquery.mobile-1.5.0.min.js js/lib/font-awsome.min.js js/lib/bootstrap.min.js js/index-temp.min.js",
     "remove-files:js": "del-cli js/index-temp.min.js",
     "build:js": "npm-run-all minify:js concat:js remove-files:js",
     "copyfiles-target": "copyfiles js/index.min.js css/style.css target",

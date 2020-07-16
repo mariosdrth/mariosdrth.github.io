@@ -5,6 +5,11 @@ const portfolioBreakpoint = $('#portfolio').offset().top + $('#portfolio').outer
 const contactBreakpoint = $('#contact').offset().top + $('#contact').outerHeight() - 100;
 let slideIndexMedApp = 0;
 let slideIndexMedAppFullScreen = 0;
+const leftArrow = 37;
+const rightArrow = 39;
+const escapeButton = 27;
+
+$.mobile.autoInitializePage = false;
 
 $('document').ready(() => {
   adaptNav();
@@ -21,6 +26,8 @@ $('document').ready(() => {
   $(window).scroll(showExperience);
   $(window).scroll(showPortfolio);
   $(window).scroll(showContactForm);
+
+  $(window).resize(() => closeFullScreenImg());
 
   $('#home-nav').click(() => adaptActiveClassOnNav);
   $('#about-nav').click(() => adaptActiveClassOnNav);
@@ -47,6 +54,12 @@ $('document').ready(() => {
   $('#item--alt--free').click(event => event.preventDefault());
 
   $(document).keydown(event => checkArrowsPressedForSlideshow(event.keyCode));
+
+  $('.img-wrapper-images-img').on('swiperight', () => checkArrowsPressedForSlideshow(leftArrow));
+  $('.img-wrapper-images-img').on('swipeleft', () => checkArrowsPressedForSlideshow(rightArrow));
+
+  $('.portfolio-content__slideshow--item--img').on('swiperight', () => checkImgSlideshowMedApp(-1));
+  $('.portfolio-content__slideshow--item--img').on('swipeleft', () => checkImgSlideshowMedApp(1));
 });
 
 const toggleAlert = () => {
@@ -336,6 +349,7 @@ const closeFullScreenImg = () => {
   $('html').css('overflow', 'auto');
   slideIndexMedAppFullScreen = 0;
   updateImagesClasses();
+  clearElements();
 };
 
 const updateImage = () => {
@@ -405,17 +419,17 @@ const updateImagesClasses = () => {
   const imgBackFour = $('.img-wrapper-images-back-4');
   const imgBackFive = $('.img-wrapper-images-back-5');
 
-  const transformOne = 'scale(0.4) translateX(-400rem)';
-  const transformTwo = 'scale(0.7) translateX(-60rem)';
+  const transformOne = getTransform(1);
+  const transformTwo = getTransform(2);
   const transformThree = 'none';
-  const transformFour = 'scale(0.7) translateX(60rem)';
-  const transformFive = 'scale(0.4) translateX(400rem)';
+  const transformFour = getTransform(4);
+  const transformFive = getTransform(5);
 
-  const opacityOne = '0';
-  const opacityTwo = '0.6';
+  const opacityOne = '0.75';
+  const opacityTwo = '0.85';
   const opacityThree = '1';
-  const opacityFour = '0.6';
-  const opacityFive = '0';
+  const opacityFour = '0.85';
+  const opacityFive = '0.75';
 
   const zIndexOne = '1';
   const zIndexTwo = '2';
@@ -456,16 +470,94 @@ const updateImagesClasses = () => {
   }
 };
 
+const getTransform = element => {
+  let transform;
+  if (window.matchMedia('(max-width: 400px)').matches) {
+    if (element === 1) {
+      transform = 'scale(0.6) translateX(-14.5rem)';
+    } else if (element === 2) {
+      transform = 'scale(0.7) translateX(-9rem)';
+    } else if (element === 4) {
+      transform = 'scale(0.7) translateX(9rem)';
+    } else if (element === 5) {
+      transform = 'scale(0.6) translateX(14.5rem)';
+    }
+  } else if (window.matchMedia('(max-width: 500px)').matches) {
+    if (element === 1) {
+      transform = 'scale(0.6) translateX(-18rem)';
+    } else if (element === 2) {
+      transform = 'scale(0.7) translateX(-11rem)';
+    } else if (element === 4) {
+      transform = 'scale(0.7) translateX(11rem)';
+    } else if (element === 5) {
+      transform = 'scale(0.6) translateX(18rem)';
+    }
+  } else if (window.matchMedia('(max-width: 600px)').matches) {
+    if (element === 1) {
+      transform = 'scale(0.6) translateX(-22rem)';
+    } else if (element === 2) {
+      transform = 'scale(0.7) translateX(-14rem)';
+    } else if (element === 4) {
+      transform = 'scale(0.7) translateX(14rem)';
+    } else if (element === 5) {
+      transform = 'scale(0.6) translateX(22rem)';
+    }
+  } else if (window.matchMedia('(max-width: 800px)').matches) {
+    if (element === 1) {
+      transform = 'scale(0.6) translateX(-28rem)';
+    } else if (element === 2) {
+      transform = 'scale(0.7) translateX(-17rem)';
+    } else if (element === 4) {
+      transform = 'scale(0.7) translateX(17rem)';
+    } else if (element === 5) {
+      transform = 'scale(0.6) translateX(28rem)';
+    }
+  } else if (window.matchMedia('(max-width: 1200px)').matches) {
+    if (element === 1) {
+      transform = 'scale(0.6) translateX(-32rem)';
+    } else if (element === 2) {
+      transform = 'scale(0.7) translateX(-19rem)';
+    } else if (element === 4) {
+      transform = 'scale(0.7) translateX(19rem)';
+    } else if (element === 5) {
+      transform = 'scale(0.6) translateX(32rem)';
+    }
+  } else {
+    if (element === 1) {
+      transform = 'scale(0.6) translateX(-42rem)';
+    } else if (element === 2) {
+      transform = 'scale(0.7) translateX(-25rem)';
+    } else if (element === 4) {
+      transform = 'scale(0.7) translateX(25rem)';
+    } else if (element === 5) {
+      transform = 'scale(0.6) translateX(42rem)';
+    }
+  }
+  return transform;
+};
+
+const clearElements = () => {
+  $('.img-wrapper-images-back-1').css('transform', '').css('opacity', '').css('z-index', '');
+  $('.img-wrapper-images-back-2').css('transform', '').css('opacity', '').css('z-index', '');
+  $('.img-wrapper-images-back-3').css('transform', '').css('opacity', '').css('z-index', '');
+  $('.img-wrapper-images-back-4').css('transform', '').css('opacity', '').css('z-index', '');
+  $('.img-wrapper-images-back-5').css('transform', '').css('opacity', '').css('z-index', '');
+};
+
 const checkArrowsPressedForSlideshow = keyCode => {
   if ($('.img-wrapper').css('z-index') > 0) {
-    if (keyCode === 37) {
+    if (keyCode === leftArrow) {
       translateImages(-1);
       checkImgSlideshowMedApp(-1);
-    } else if (keyCode === 39) {
+    } else if (keyCode === rightArrow) {
       translateImages(1);
       checkImgSlideshowMedApp(1);
-    } else if (keyCode === 27) {
+    } else if (keyCode === escapeButton) {
       closeFullScreenImg();
     }
   }
+};
+
+const preventPropagation = event => {
+  event.stopPropagation();
 };
