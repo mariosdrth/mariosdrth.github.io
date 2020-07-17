@@ -1,6 +1,7 @@
 .img-wrapper-active {
   opacity: 1 !important;
   z-index: 9999999 !important;
+  background-color: rgba($color-black, 0.8);
 
   @supports (backdrop-filter: blur(10px)) {
     backdrop-filter: blur(10px);
