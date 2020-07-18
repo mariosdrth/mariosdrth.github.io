@@ -12,6 +12,7 @@ const escapeButton = 27;
 $.mobile.autoInitializePage = false;
 
 $('document').ready(() => {
+  isDeviceTouch() && $('#redirect-to-app').css('display', 'none');
   adaptNav();
   adaptActiveClassOnNav();
   toggleDisplayToTopElement();
@@ -55,11 +56,27 @@ $('document').ready(() => {
 
   $(document).keydown(event => checkArrowsPressedForSlideshow(event.keyCode));
 
-  $('.img-wrapper-images-img').on('swiperight', () => checkArrowsPressedForSlideshow(leftArrow));
-  $('.img-wrapper-images-img').on('swipeleft', () => checkArrowsPressedForSlideshow(rightArrow));
+  $('.img-wrapper-images-img').on('swiperight', () => {
+    if (isDeviceTouch()) {
+      checkArrowsPressedForSlideshow(leftArrow);
+    }
+  });
+  $('.img-wrapper-images-img').on('swipeleft', () => {
+    if (isDeviceTouch()) {
+      checkArrowsPressedForSlideshow(rightArrow);
+    }
+  });
 
-  $('.portfolio-content__slideshow--item--img').on('swiperight', () => checkImgSlideshowMedApp(-1));
-  $('.portfolio-content__slideshow--item--img').on('swipeleft', () => checkImgSlideshowMedApp(1));
+  $('.portfolio-content__slideshow--item--img').on('swiperight', () => {
+    if (isDeviceTouch()) {
+      checkImgSlideshowMedApp(-1);
+    }
+  });
+  $('.portfolio-content__slideshow--item--img').on('swipeleft', () => {
+    if (isDeviceTouch()) {
+      checkImgSlideshowMedApp(1);
+    }
+  });
 });
 
 const toggleAlert = () => {
@@ -206,7 +223,14 @@ const addClassToContactNav = () => {
 
 const getDocHeight = () => {
   var D = document;
-  return Math.max(D.body.scrollHeight, D.documentElement.scrollHeight, D.body.offsetHeight, D.documentElement.offsetHeight, D.body.clientHeight, D.documentElement.clientHeight);
+  return Math.max(
+    D.body.scrollHeight,
+    D.documentElement.scrollHeight,
+    D.body.offsetHeight,
+    D.documentElement.offsetHeight,
+    D.body.clientHeight,
+    D.documentElement.clientHeight
+  );
 };
 
 const submitForm = event => {
@@ -561,3 +585,5 @@ const checkArrowsPressedForSlideshow = keyCode => {
 const preventPropagation = event => {
   event.stopPropagation();
 };
+
+const isDeviceTouch = () => 'ontouchstart' in window || navigator.MaxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
