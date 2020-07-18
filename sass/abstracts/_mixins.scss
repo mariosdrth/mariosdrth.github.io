@@ -89,4 +89,11 @@
       @content;
     }
   }
+
+  @if $breakpoint == giant-desktop {
+    // 2700px
+    @media only screen and (min-width: 168.75em) {
+      @content;
+    }
+  }
 }
