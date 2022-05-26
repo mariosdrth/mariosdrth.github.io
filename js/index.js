@@ -43,11 +43,6 @@ $('document').ready(() => {
 
   $('body').tooltip({ selector: '[data-toggle=tooltip]' });
 
-  $('.logo-gen').click(() => window.open('https://www.genedata.com/', '_blank'));
-  $('.logo-alten').click(() => window.open('https://www.alten.fr/', '_blank'));
-  $('.logo-amadeus').click(() => window.open('https://www.amadeus.com/en', '_blank'));
-  $('.logo-ots').click(() => window.open('https://www.ots.gr/', '_blank'));
-
   $('.alert').click(() => removeAlertOnBackdropClick());
   $('.alert__content').click(event => event.stopPropagation());
   $('.alert__content--close-btn').click(() => toggleAlert());
@@ -125,7 +120,7 @@ const showSummary = () => {
 const showExperience = () => {
   const scroll = $(window).scrollTop();
   if (scroll > aboutBreakpoint - 400 || scroll + $(window).height() > getDocHeight() - 20) {
-    $('.experience-content__details').addClass('show');
+    $('.experience-content__details--container').addClass('show-exp');
   }
 };
 

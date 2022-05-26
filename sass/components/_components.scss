@@ -415,270 +415,214 @@
 
 // EXPERIENCE
 
+* {
+  box-sizing: border-box;
+}
+
 .experience-content {
   font-size: 2rem;
   color: $color-light-grey-1;
   margin: 0 auto;
 
   &__details {
-    opacity: 0;
-    width: 70%;
-    padding: 3rem 6rem;
-    transition: opacity 1s ease-in;
-    margin: auto;
-    background-color: rgba($color-black, 0.6);
-    border-radius: 1rem;
+    position: relative;
+    max-width: 160rem;
+    margin: 0 auto;
+    color: $color-light-black;
 
-    &__list {
-      display: grid;
-      grid-template-rows: repeat(5, 1fr);
+    &::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      background-color: $color-white;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -3px;
+    }
 
-      &--item {
-        overflow: hidden;
-        display: grid;
-        grid-template-rows: 0.4fr 1fr 0.1fr;
-        grid-template-columns: repeat(3, 1fr);
-        align-items: center;
+    &--container {
+      padding: 1rem 4rem;
+      position: relative;
+      background-color: inherit;
+      width: 50%;
+      z-index: 1;
 
-        grid-template-areas:
-          'date job company'
-          'desc desc desc'
-          'line line line';
+      &::after {
+        content: '';
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -17px;
+        background-color: $color-white;
+        border: 4px solid #FF9F55;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
 
-        & > * {
-          text-align: center;
+      &--content {
+        padding: 2rem 3rem;
+        background-color: $color-white;
+        position: relative;
+        border-radius: 6px;
+
+        &--role {
+          margin-bottom: 1.8rem;
         }
 
-        #item--alt--free {
-          cursor: default;
+        &--header{
+          font-weight: 600;
+          margin-bottom: 1rem;
         }
 
-        &--alt {
-          display: none;
-          text-align: center;
-          transition: color 0.2s ease-in;
-          color: rgba($color-primary, 0.8) !important;
-          padding-bottom: 0 !important;
-          grid-area: date;
-          grid-column: 1 / -1;
+        &--link {
+          color: $color-primary !important;
 
-          @include respond(phone) {
-            display: block !important;
-          }
-
-          .date {
-            font-size: 1.5rem;
-          }
-
-          .position {
-            font-size: 1.7rem;
-          }
-
-          .company {
-            font-size: 1.5rem;
-            text-transform: uppercase;
-          }
-
-          :not(:last-child) {
-            margin-right: 1rem;
+          &:hover {
+            color: $color-primary-dark !important;
           }
         }
+      }
 
-        & > * {
-          margin: 0;
-        }
-
-        :not(:last-child):not(.experience-content__details__list--item--logo) {
-          padding-bottom: 2rem;
-
-          @include respond(phone) {
-            margin-bottom: 1rem;
-          }
-        }
-
-        & hr {
-          margin-bottom: 5rem;
-          grid-area: line;
-        }
-
-        .logo-gen {
-          background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/gen_logo.png');
-        }
-
-        .logo-alten {
-          background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/alten_logo.png');
-          margin-left: 22rem;
-
-          @include respond(big-desktop) {
-            margin-left: 32rem;
-          }
-
-          @include respond(giant-desktop) {
-            margin-left: 40rem;
-          }
-        }
-
-        .logo-amadeus {
-          background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/amadeus_logo.png');
-          margin-right: 18rem;
-
-          @include respond(big-desktop) {
-            margin-right: 28rem;
-          }
-
-          @include respond(giant-desktop) {
-            margin-right: 36rem;
-          }
-        }
-
-        .logo-ots {
-          background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/ots_logo.png');
-        }
-
-        .logo-free {
-          background-image: linear-gradient(to bottom, rgba($color-black, 0.3), rgba($color-black, 0.3)), url('../img/free_logo.png');
-          cursor: auto !important;
-        }
-
-        &--logo {
-          opacity: 0;
-          transition: all 0.6s;
-          visibility: hidden;
-          border-radius: 0.6rem;
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-          cursor: pointer;
-          height: 4.4rem;
-          width: 11rem;
-          transform: translateY(10rem);
-          grid-area: job;
-          margin: 0 auto 2rem auto;
-
-          @media (hover: hover) {
-            &:hover {
-              transform: scale(0.9) translateY(0) !important;
-            }
-          }
-
-          @include respond(tab-land) {
-            transform: scale(0.8) !important;
-
-            @media (hover: hover) {
-              &:hover {
-                transform: scale(0.7) !important;
-              }
-            }
-          }
-
-          @include respond(phone) {
-            display: none !important;
-          }
-        }
-
-        &--date {
-          transition: all 0.6s;
-          grid-area: date;
-
-          @include respond(tab-land) {
-            font-size: 1.7rem;
-          }
-
-          @include respond(phone) {
-            display: none !important;
-          }
-        }
-
-        &--position {
-          transition: all 0.3s;
-          opacity: 1;
-          grid-area: job;
-
-          @include respond(phone) {
-            display: none !important;
-          }
-        }
-
-        &--company {
-          text-transform: uppercase;
-          transition: all 0.6s;
-          grid-area: company;
-          @include respond(tab-land) {
-            font-size: 1.5rem;
-          }
-
-          @include respond(phone) {
-            display: none !important;
-          }
-        }
-
-        &--description {
-          font-size: 1.2rem;
-          text-align: center;
-          grid-area: desc;
-
-          &--inner-list {
-            grid-area: desc;
-
-            &--item {
-              font-size: 1.2rem;
-              text-align: center;
-
-              & a {
-                font-size: 1.4rem;
-                color: $color-primary !important;
-              }
-            }
-
-            @include respond(phone) {
-              :first-child {
-                padding-bottom: 0 !important;
-              }
-            }
-          }
-        }
-
-        &:hover &--position {
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        &:hover &--company {
-          color: $color-primary;
-        }
-
-        &:hover &--date {
-          color: $color-primary;
-        }
-
-        &:hover &--logo {
-          opacity: 1;
-          visibility: visible;
-          transform: translateY(0);
+      @include respond(phone) {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+        
+        &::before {
+          left: 60px !important;
+          border: medium solid $color-white !important;
+          border-width: 10px 10px 10px 0 !important;
+          border-color: transparent $color-white transparent transparent !important;
         }
       }
     }
 
-    @include respond(small-desktop) {
-      width: 75%;
+    &--left {
+      right: 0.3%;
+      opacity: 0;
+      transition: all 0.4s ease-in;
+      transform: translateX(-15rem);
+
+      &::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid $color-white;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent $color-white;
+      }
+
+      @include respond(huge-desktop) {
+        right: 0.25% !important;
+
+        &::before {
+          right: 38px !important;
+        }
+      }
+
+      @include respond(small-desktop) {
+        right: 0.33% !important;
+
+        &::before {
+          right: 28px !important;
+        }
+      }
+
+      @include respond(tab-land) {
+        right: 0.4% !important;
+
+        &::before {
+          right: 26px !important;
+        }
+      }
+
+      @include respond(tab-port) {
+        right: 0.55% !important;
+
+        &::before {
+          right: 22px !important;
+        }
+      }
+
+      @include respond(phone) {
+        right: 0.3% !important;
+
+        &::after {
+          left: 2.45rem !important;
+        }
+      }
     }
 
-    @include respond(tab-land) {
-      width: 85%;
-    }
+    &--right {
+      left: 50.22%;
+      opacity: 0;
+      transition: all 0.4s ease-in;
+      transform: translateX(15rem);
 
-    @include respond(phone-tab) {
-      padding: 2rem 5rem 0 3rem;
-      width: 95%;
+      &::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid $color-white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent $color-white transparent transparent;
+      }
+
+      &::after {
+        left: -1.6rem;
+      }
+
+      @include respond(huge-desktop) {
+        left: 50.35% !important;
+
+        &::before {
+          left: 38px !important;
+        }
+      }
+
+      @include respond(small-desktop) {
+        &::before {
+          left: 28px !important;
+        }
+      }
+
+      @include respond(tab-land) {
+        &::before {
+          left: 26px !important;
+        }
+      }
+
+      @include respond(tab-port) {
+        left: 50.05% !important;
+
+        &::before {
+          left: 22px !important;
+        }
+      }
+
+      @include respond(phone) {
+        left: 0 !important;
+
+        &::after {
+          left: 2.25rem !important;
+        }
+      }
     }
 
     @include respond(phone) {
-      width: 100%;
-      padding: 1rem 4rem 0 2rem;
-    }
-
-    @include respond(huge-desktop) {
-      max-width: 165rem;
+      &::after {
+        left: 3.84rem;
+      }
     }
   }
 }
