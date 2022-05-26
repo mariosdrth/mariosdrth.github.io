@@ -613,6 +613,10 @@
       @include respond(phone) {
         left: 0 !important;
 
+        &::before {
+          left: 60px !important;
+        }
+
         &::after {
           left: 2.25rem !important;
         }
